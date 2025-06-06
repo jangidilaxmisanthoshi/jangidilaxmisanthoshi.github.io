@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruit List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+
+    .container {
+      border: 2px solid gray;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    #fruitInput {
+      width: 70%;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    #addBtn {
+      padding: 6px 10px;
+      font-size: 16px;
+      margin-left: 5px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Fruit List</h2>
+    <input type="text" id="fruitInput" placeholder="Enter fruit name">
+    <button id="addBtn">Add</button>
+    <ul id="fruitList"></ul>
+  </div>
+
+  <script>
+    const addBtn = document.getElementById('addBtn');
+    const fruitInput = document.getElementById('fruitInput');
+    const fruitList = document.getElementById('fruitList');
+
+    addBtn.addEventListener('click', () => {
+      const fruit = fruitInput.value.trim();
+      if (fruit !== '') {
+        const li = document.createElement('li');
+        li.textContent = fruit;
+        fruitList.appendChild(li);
+        fruitInput.value = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
