@@ -1,40 +1,62 @@
-// script.js
+let users = [];
+
 const showLogin = () => {
-  let str = `
+    let str=`
     <div class='App-Container'>
-      <h1>Login Form</h1>
-      <input type="text" id="txtEmail" placeholder="Email" />
-      <input type="password" id="txtPass" placeholder="Password" />
-      <button onclick="login()">Log In</button>
-      <button onclick="showRegister()">Create Account</button>
+    <h1>Login Form</h1>
+    <p><input type="text" id="txtEmail" placeholder="email"></p>
+    <p><input type="password" id="txtPass" placeholder="password"></p>
+    <p><button onclick='loginUser()'>Log In</button></p>
+    <p><button onclick='showRegister()'>Create Account</button></p>
     </div>
-  `;
-  root.innerHTML = str;
-};
+    `
+    root.innerHTML = str
+}
 
 const showRegister = () => {
-  let str = `
+    let str=`
     <div class='App-Container'>
-      <h1>Register Form</h1>
-      <input type="text" id="txtName" placeholder="Full Name" />
-      <input type="text" id="txtEmail" placeholder="Email" />
-      <input type="password" id="txtPass" placeholder="Password" />
-      <button onclick="register()">Register</button>
-      <button onclick="showLogin()">Back to Login</button>
+    <h1>Register Form</h1>
+    <p><input type="text" id="txtName" placeholder="name"></p>
+     <p><input type="text" id="txtEmail" placeholder="email"></p>
+    <p><input type="password" id="txtPass" placeholder="password"></p>
+    <button onclick='registerUser()'>Register</button>
+    <button onclick='showLogin()'>already have an account</button>
     </div>
-  `;
-  root.innerHTML = str;
-};
+    `
+    root.innerHTML = str
+}
 
-const login = () => {
-  const email = document.getElementById("txtEmail").value;
-  const pass = document.getElementById("txtPass").value;
-  alert(`Logging in with\nEmail: ${email}\nPassword: ${pass}`);
-};
+function registerUser() {
+    const name = document.getElementById('txtName').value;
+    const email = document.getElementById('txtEmail').value;
+    const pass = document.getElementById('txtPass').value;
+    if(name && email && pass) {
+        users.push({ name, email, pass });
+        alert('Registration successful! Please login.');
+        showLogin();
+    } else {
+        alert('Please fill all fields');
+    }
+}
 
-const register = () => {
-  const name = document.getElementById("txtName").value;
-  const email = document.getElementById("txtEmail").value;
-  const pass = document.getElementById("txtPass").value;
-  alert(`Registering\nName: ${name}\nEmail: ${email}\nPassword: ${pass}`);
-};
+function loginUser() {
+    const email = document.getElementById('txtEmail').value;
+    const pass = document.getElementById('txtPass').value;
+    const user = users.find(u => u.email === email && u.pass === pass);
+    if(user) {
+        showHome();
+    } else {
+        alert('Invalid email or password');
+    }
+}
+
+const showHome = () => {
+    let str=`
+    <div class='App-Container'>
+    <h1>Welcome to the Home Page</h1>
+    <button onclick='showLogin()'>Log Out</button>
+    </div>
+    `
+    root.innerHTML = str
+}
