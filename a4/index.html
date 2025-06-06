@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+
+    <input type="text" id="textbox1" placeholder="Enter first number" />
+    <input type="text" id="textbox2" placeholder="Enter second number" />
+    <br /><br />
+    <button style="color:brown" onclick="cal()">Calculate</button>
+    <br /><br />
+
+    <!-- Line-by-line result display -->
+    <p>Add: <span id="addResult"></span></p>
+    <p>Subtract: <span id="subResult"></span></p>
+    <p>Multiply: <span id="mulResult"></span></p>
+    <p>Divide: <span id="divResult"></span></p>
+
+    <script>
+      function add(a, b) {
+        return a + b;
+      }
+
+      function subtract(a, b) {
+        return a - b;
+      }
+
+      function multiply(a, b) {
+        return a * b;
+      }
+
+      function divide(a, b) {
+        if (b === 0) {
+          return "Cannot divide by zero";
+        }
+        return a / b;
+      }
+
+      function cal() {
+        var val1 = Number(document.getElementById("textbox1").value);
+        var val2 = Number(document.getElementById("textbox2").value);
+
+        document.getElementById("addResult").textContent = add(val1, val2);
+        document.getElementById("subResult").textContent = subtract(val1, val2);
+        document.getElementById("mulResult").textContent = multiply(val1, val2);
+        document.getElementById("divResult").textContent = divide(val1, val2);
+      }
+    </script>
+  </body>
+</html>
+
+
+
