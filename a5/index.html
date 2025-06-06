@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form L</title>
+  <script>
+    const handleSubmit = () => {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        <h3>Submitted Data</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Password:</strong> ${password}</p>
+      `;
+    };
+  </script>
+</head>
+<body>
+  <center>
+    <h2>FORM</h2>
+
+    <input type="text" id="name" placeholder="Enter your name" style="font-size:18px; width:300px;" /><br><br>
+    <input type="email" id="email" placeholder="Enter your email" style="font-size:18px; width:300px;" /><br><br>
+    <input type="password" id="password" placeholder="Enter your password" style="font-size:18px; width:300px;" /><br><br>
+
+    <button onclick="handleSubmit()" style="font-size:18px;">Submit</button>
+
+    <div id="result" style="margin-top: 30px;"></div>
+  </center>
+</body>
+</html>
