@@ -2,7 +2,7 @@ const users = [];
 let user={}
 const showLogin = () => {
   let str = `
-    <div>
+    <div class='App-Container'>
     <h1>Login Form</h1>
     <p><div id="dvMsg"></div></p>
     <p><input type="text" id="txtEmail"></p>
@@ -16,6 +16,7 @@ const showLogin = () => {
 
 const showRegister = () => {
   let str = `
+    <div class='App-Container'>
     <h1>Register Form</h1>
     <p><input type="text" id="txtName"></p>
      <p><input type="text" id="txtEmail"></p>
@@ -29,9 +30,10 @@ const showRegister = () => {
 
 const showHome = () => {
   let str = `
+    <div class='App-Container'>
     <h1>Welcome ${user.name}</h1>
     <hr>
-    <p><select>
+    <p> <select id='select'>
      <option value=0>--select--</option>
       <option value=1>Deposit</option>
       <option value=2>Withdraw</option>
@@ -39,11 +41,12 @@ const showHome = () => {
       <p>
       <input type='number' id='txtAmount'>
       </p>
-      <p><button>Submit</button>
+      <p><button onclick='amount()'>Submit</button>
 
     <button onclick='showLogin()'>Logout</button>
     <hr>
     <p>Current balance:${user.balance}
+    <p><div id="dvmsg"></div></p>
     `;
   root.innerHTML = str;
 };
@@ -71,3 +74,25 @@ const validateUser = () => {
     dvMsg.innerHTML = "Access Denied";
   }
 };
+
+const amount = () => {
+  let amount = Number(document.getElementById("txtAmount").value);
+  let value = document.getElementById("select").value;
+
+  if (value == 1 && amount >= 0) {
+    user.balance += amount;
+    showHome(); 
+  } else {
+    dvmsg.innerHTML = "Access Denied";
+  }
+  if (value == 2 && amount >= 0) {
+    if (user.balance >= amount) {
+      user.balance -= amount;
+      showHome();
+    } else {
+      dvmsg.innerHTML = "Insufficient Balance";
+    }
+  } else {
+    dvmsg.innerHTML = "Access Denied";
+  }
+}
