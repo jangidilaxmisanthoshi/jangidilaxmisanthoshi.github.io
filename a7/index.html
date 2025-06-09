@@ -18,11 +18,6 @@
         .then((res) => res.json())
         .then((users) => {
           usersData = users;
-          users.map((user) => {
-            str += <div>${user.name}</div>;
-          });
-
-          dvUsers.innerHTML = str + "</div>";
         });
 
       document.getElementById("searchBtn").addEventListener("click", () => {
@@ -35,11 +30,9 @@
         }
         const user = usersData.find((u) => u.email.toLowerCase() === email.toLowerCase());
         if (user) {
-          resultDiv.innerHTML = "<div>Name: ${user.name}</div><div>Username: ${user.username}</div>";
-          usersDiv.innerHTML = ""; // Hide other names
+          resultDiv.innerHTML = `<div> ${user.name}</div>`;
         } else {
           resultDiv.innerHTML = "<div>No user found with that email.</div>";
-          usersDiv.innerHTML = ""; // Hide other names
         }
       });
     </script>
